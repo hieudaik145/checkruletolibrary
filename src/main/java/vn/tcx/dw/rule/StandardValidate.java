@@ -13,7 +13,7 @@ import vn.tcx.dw.component.Validator;
 @Data
 public class StandardValidate {
 
-    private int standardId;
+    private long standardId;
     
     private Validator validator;
 }

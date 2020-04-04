@@ -15,10 +15,10 @@ public class RuleValidate {
 
     private List<StandardValidate> standardValidates;
     
-    private int ruleId;
+    private long ruleId;
     
-    private int actionId;
+    private long actionId;
     
-    private int statusId;
+    private long statusId;
     
 }

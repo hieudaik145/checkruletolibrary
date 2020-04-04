@@ -7,6 +7,7 @@ import vn.tcx.dw.component.Validator;
 
 /**
  * Define check empty validate check
+ * 
  * @author hieuvv
  * @since 1.0
  * @created 30/03/2020 15:56:05
@@ -19,7 +20,6 @@ public class CheckEmptyValidator implements Validator {
 
     @Override
     public Result validate(Object value) {
-
 
         return isEmpty(value.toString()) ? Result.OK : Result.FAILED;
     }

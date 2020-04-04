@@ -15,34 +15,34 @@ import vn.tcx.dw.component.Validator;
  */
 @Setter
 public class CheckGreaterThanValidator implements Validator {
-    
 
     private Long valueInt;
-    
+
     private BigDecimal bigDecimal;
-    
-    private boolean isLong;
-    
+
+    private boolean isInteger;
+
     private boolean isGreaterNumber(Long value) {
-        
+
         return value > valueInt;
     }
-    
+
     private boolean isGreaterDecimal(BigDecimal value) {
-        
+
         return value.compareTo(bigDecimal) > 0;
     }
-    
+
     @Override
     public Result validate(Object value) {
-        if (isLong) {
+
+        if (isInteger) {
             long temp = (long) value;
             return isGreaterNumber(temp) ? Result.OK : Result.FAILED;
         }
-        
-        Double number = (Double) value;
+        double number = (double) value;
+
         BigDecimal temp = BigDecimal.valueOf(number);
-        
+
         return isGreaterDecimal(temp) ? Result.OK : Result.FAILED;
     }
 

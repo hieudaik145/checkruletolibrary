@@ -6,7 +6,8 @@ import lombok.Data;
 
 /**
  * Define Field Validate
- * @author hieuvv 
+ * 
+ * @author hieuvv
  * @since 1.0
  * @created 30/03/2020 15:48:15
  */
@@ -16,7 +17,7 @@ public class FieldValidate {
     private Object value;
 
     private List<RuleValidate> ruleValidates;
-    
-    private int sourceColumnId;
-    
+
+    private long sourceColumnId;
+
 }

@@ -42,7 +42,6 @@ public class RowValidateService {
                 // peform add info row validate to resultError
                 tempResultErrors.forEach(x -> {
                     x.setAuditRowId(rowValidate.getIdAuditRow());
-                    x.setSourceRowId(rowValidate.getSourceRowId());
                 });
 
                 // add all result error of field validate to result error of row validate

@@ -1,23 +1,16 @@
 package vn.tcx.dw;
 
 /**
- * class description (please change)
+ * Define class main test
  * @author hieuvv 
  * @since 1.0
- * @created 30/03/2020 16:09:50
+ * @created 31/03/2020 09:03:52
  */
 public class Main {
 
-    /**
-     * Run
-     * @update hieuvv
-     * @lastModifier 30/03/2020 16:10:13
-     * @param args
-     */
     public static void main(String[] args) {
-        
-        Object str = "as";
-        
-        System.out.println(str.toString());
+
+        System.out.println("tcx");
     }
+
 }

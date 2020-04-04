@@ -6,20 +6,16 @@ import lombok.Data;
 
 /**
  * Define Row Validate
- * @author hieuvv 
+ * 
+ * @author hieuvv
  * @since 1.0
  * @created 30/03/2020 15:48:42
  */
 @Data
 public class RowValidate {
-    
+
     private List<FieldValidate> fieldValidates;
-    
-    private int idAuditRow;
-    
-    private int sourceRowId;
 
-   
-
+    private long idAuditRow;
 
 }

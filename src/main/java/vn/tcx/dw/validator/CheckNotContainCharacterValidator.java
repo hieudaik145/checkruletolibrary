@@ -1,0 +1,27 @@
+package vn.tcx.dw.validator;
+
+import org.apache.commons.lang3.StringUtils;
+
+import vn.tcx.dw.component.Result;
+import vn.tcx.dw.component.Validator;
+
+/**
+ * Check not contain characete (is number)
+ * 
+ * @author hieuvv
+ * @since 1.0
+ * @created 03/04/2020 15:37:50
+ */
+public class CheckNotContainCharacterValidator implements Validator {
+
+    private boolean isNumber(String value) {
+
+        return StringUtils.isNumeric(value);
+    }
+
+    public Result validate(Object value) {
+
+        return isNumber(value.toString()) ? Result.OK : Result.FAILED;
+    }
+
+}

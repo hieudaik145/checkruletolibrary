@@ -13,19 +13,17 @@ import lombok.Data;
 @Data
 public class ResultError {
 
-    private int ruleId;
+    private long ruleId;
 
-    private int actionId;
+    private long actionId;
 
-    private int statusId;
+    private long statusId;
 
-    private int auditTableId;
+    private long auditTableId;
 
-    private int auditRowId;
+    private long auditRowId;
     
-    private int sourceRowId;
+    private long sourceColumnId;
 
-    private int sourceColumnId;
-
-    private int standardId;
+    private long standardId;
 }
