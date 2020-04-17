@@ -1,6 +1,8 @@
 package vn.tcx.dw.validator;
 
+import java.sql.Time;
 import java.time.LocalTime;
+import java.util.Objects;
 
 import lombok.Setter;
 import vn.tcx.dw.component.Result;
@@ -25,11 +27,16 @@ public class CheckTimeStartValidator implements Validator {
 
     @Override
     public Result validate(Object value) {
+        
+        if (Objects.isNull(value)) {
+            return Result.OK;
+        }
 
         boolean kq = false;
 
-        if (value instanceof LocalTime) {
-            kq = isTimeStart((LocalTime) value);
+        if (value instanceof Time) {
+            Time temp = (Time) value;
+            isTimeStart(temp.toLocalTime());
         }
 
         return kq ? Result.OK : Result.FAILED;

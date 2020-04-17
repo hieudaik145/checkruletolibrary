@@ -1,6 +1,6 @@
 package vn.tcx.dw.validator;
 
-import java.math.BigDecimal;
+import java.util.Objects;
 
 import lombok.Setter;
 import vn.tcx.dw.component.Result;
@@ -16,34 +16,38 @@ import vn.tcx.dw.component.Validator;
 @Setter
 public class CheckGreaterThanOrEqualToValidator implements Validator {
 
-    private Long valueInt;
+    private long valueInt;
 
-    private BigDecimal bigDecimal;
-
-    private boolean isInteger;
-
-    private boolean isGreaterOrEqualNumber(Long value) {
+    private boolean isGreaterOrEqualNumber(long value) {
 
         return value >= valueInt;
-    }
-
-    private boolean isGreaterOrEqualDecimal(BigDecimal value) {
-
-        return value.compareTo(bigDecimal) >= 0;
     }
 
     @Override
     public Result validate(Object value) {
 
-        if (isInteger) {
-            long temp = (long) value;
-            return isGreaterOrEqualNumber(temp) ? Result.OK : Result.FAILED;
+        if (Objects.isNull(value)) {
+            return Result.OK;
         }
 
-        double number = (double) value;
-        BigDecimal temp = BigDecimal.valueOf(number);
+        try {
+            long valueCheck = 0;
+            if (value instanceof Double) {
+                Double nd = (Double) value;
+                valueCheck = nd.longValue();
+            } else if (value instanceof Float) {
+                Float nf = (Float) value;
+                valueCheck = nf.longValue();
+            } else {
+                valueCheck = Long.valueOf(value.toString());
+            }
 
-        return isGreaterOrEqualDecimal(temp) ? Result.OK : Result.FAILED;
+            return isGreaterOrEqualNumber(valueCheck) ? Result.OK : Result.FAILED;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.FAILED;
+        }
     }
 
 }

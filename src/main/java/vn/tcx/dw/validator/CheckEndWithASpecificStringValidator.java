@@ -1,5 +1,7 @@
 package vn.tcx.dw.validator;
 
+import java.util.Objects;
+
 import org.apache.commons.lang3.StringUtils;
 
 import lombok.Setter;
@@ -25,6 +27,10 @@ public class CheckEndWithASpecificStringValidator implements Validator {
 
     @Override
     public Result validate(Object value) {
+
+        if (Objects.isNull(value)) {
+            return Result.OK;
+        }
 
         return isEndWithASpecificString(value.toString()) ? Result.OK : Result.FAILED;
     }

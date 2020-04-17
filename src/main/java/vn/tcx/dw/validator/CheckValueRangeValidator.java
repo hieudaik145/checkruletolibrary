@@ -1,6 +1,6 @@
 package vn.tcx.dw.validator;
 
-import java.math.BigDecimal;
+import java.util.Objects;
 
 import lombok.Setter;
 import vn.tcx.dw.component.Result;
@@ -20,33 +20,36 @@ public class CheckValueRangeValidator implements Validator {
 
     private long maxValue;
 
-    private BigDecimal minValueDecimal;
-
-    private BigDecimal maxValueDecimal;
-
-    private boolean isInteger;
-
     private boolean isValueRangeInteger(long value) {
 
         return value >= minValue && value <= maxValue;
     }
 
-    private boolean isValueRangeDecimal(BigDecimal value) {
-
-        return value.compareTo(minValueDecimal) >= 0 && value.compareTo(maxValueDecimal) <= 0;
-    }
-
     @Override
     public Result validate(Object value) {
 
-        if (isInteger) {
-
-            return isValueRangeInteger((long) value) ? Result.OK : Result.FAILED;
+        if (Objects.isNull(value)) {
+            return Result.OK;
         }
 
-        double decimal = (double) value;
+        try {
+            long valueCheck = 0;
+            if (value instanceof Double) {
+                Double nd = (Double) value;
+                valueCheck = nd.longValue();
+            } else if (value instanceof Float) {
+                Float nf = (Float) value;
+                valueCheck = nf.longValue();
+            } else {
+                valueCheck = Long.valueOf(value.toString());
+            }
 
-        return isValueRangeDecimal(BigDecimal.valueOf(decimal)) ? Result.OK : Result.FAILED;
+            return isValueRangeInteger(valueCheck) ? Result.OK : Result.FAILED;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.FAILED;
+        }
     }
 
 }

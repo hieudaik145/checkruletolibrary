@@ -1,5 +1,7 @@
 package vn.tcx.dw.validator;
 
+import java.util.Objects;
+
 import org.apache.commons.lang3.StringUtils;
 
 import vn.tcx.dw.component.Result;
@@ -21,6 +23,10 @@ public class CheckMixValidator implements Validator {
 
     @Override
     public Result validate(Object value) {
+
+        if (Objects.isNull(value)) {
+            return Result.OK;
+        }
 
         return isMixValidate(value.toString()) ? Result.OK : Result.FAILED;
     }

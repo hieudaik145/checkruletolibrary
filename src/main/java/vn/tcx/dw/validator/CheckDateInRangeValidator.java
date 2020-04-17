@@ -1,7 +1,10 @@
 package vn.tcx.dw.validator;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import lombok.Setter;
 import vn.tcx.dw.component.Result;
@@ -43,10 +46,18 @@ public class CheckDateInRangeValidator implements Validator {
     public Result validate(Object value) {
 
         boolean kq = false;
-        if (value instanceof LocalDate) {
-            kq = isRangeValueLocalDate((LocalDate) value);
-        } else if (value instanceof LocalDateTime) {
-            kq = isRangeValueLocalDateTime((LocalDateTime) value);
+        if (Objects.isNull(value)) {
+            return Result.OK;
+
+        }
+
+        if (value instanceof Date) {
+            Date temp = (Date) value;
+            kq = isRangeValueLocalDate(temp.toLocalDate());
+        } else if (value instanceof Timestamp) {
+
+            Timestamp temp = (Timestamp) value;
+            kq = isRangeValueLocalDateTime(temp.toLocalDateTime());
         }
 
         return kq ? Result.OK : Result.FAILED;

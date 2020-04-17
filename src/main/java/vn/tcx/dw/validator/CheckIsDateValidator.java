@@ -1,8 +1,10 @@
 package vn.tcx.dw.validator;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import lombok.Setter;
 import vn.tcx.dw.component.Result;
@@ -36,8 +38,12 @@ public class CheckIsDateValidator implements Validator {
 
     @Override
     public Result validate(Object value) {
+        
+        if (Objects.isNull(value)) {
+            return Result.OK;
+        }
 
-        if (value instanceof LocalDate || value instanceof LocalDateTime) {
+        if (value instanceof Timestamp || value instanceof Date) {
             return Result.OK;
         }
 

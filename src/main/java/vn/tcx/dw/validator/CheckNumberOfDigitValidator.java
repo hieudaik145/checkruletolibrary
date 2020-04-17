@@ -1,5 +1,7 @@
 package vn.tcx.dw.validator;
 
+import java.util.Objects;
+
 import org.apache.commons.lang3.StringUtils;
 
 import lombok.Setter;
@@ -21,11 +23,17 @@ public class CheckNumberOfDigitValidator implements Validator {
     private boolean isNumberOfDigit(String value) {
 
         String numberValue = StringUtils.getDigits(value);
-
+        
         return StringUtils.length(numberValue) == numberOfDigit;
     }
 
+    @Override
     public Result validate(Object value) {
+
+        if (Objects.isNull(value)) {
+            System.out.println("value is null Result check is OK");
+            return Result.OK;
+        }
 
         return isNumberOfDigit(value.toString()) ? Result.OK : Result.FAILED;
     }

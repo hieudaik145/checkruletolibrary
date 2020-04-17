@@ -2,6 +2,7 @@ package vn.tcx.dw.validator;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 import lombok.Setter;
 import vn.tcx.dw.component.Result;
@@ -49,6 +50,10 @@ public class CheckSumValidator implements Validator {
 
     @Override
     public Result validate(Object value) {
+        
+        if (Objects.isNull(value)) {
+            return Result.OK;
+        }
 
         if (isInteger) {
             return isSumValueInteger((long) value) ? Result.OK : Result.FAILED;

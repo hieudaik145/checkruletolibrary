@@ -1,7 +1,7 @@
 package vn.tcx.dw.validator;
 
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 import lombok.Setter;
 import vn.tcx.dw.component.Result;
@@ -19,30 +19,36 @@ public class CheckInListValueValidator implements Validator {
 
     private List<Long> listValueInteger;
 
-    private List<BigDecimal> listValueBigDecimal;
-
-    private boolean isInteger;
-
     private boolean isInListValueInteger(long value) {
 
         return listValueInteger.contains(value);
     }
 
-    private boolean isInListValueBigDecimal(BigDecimal value) {
-
-        return listValueBigDecimal.contains(value);
-    }
-
     @Override
     public Result validate(Object value) {
 
-        if (isInteger) {
-            return isInListValueInteger((long) value) ? Result.OK : Result.FAILED;
+        if (Objects.isNull(value)) {
+            return Result.OK;
         }
 
-        double number = (double) value;
+        try {
+            long valueCheck = 0;
+            if (value instanceof Double) {
+                Double nd = (Double) value;
+                valueCheck = nd.longValue();
+            } else if (value instanceof Float) {
+                Float nf = (Float) value;
+                valueCheck = nf.longValue();
+            } else {
+                valueCheck = Long.valueOf(value.toString());
+            }
 
-        return isInListValueBigDecimal(BigDecimal.valueOf(number)) ? Result.OK : Result.FAILED;
+            return isInListValueInteger(valueCheck) ? Result.OK : Result.FAILED;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.FAILED;
+        }
     }
 
 }

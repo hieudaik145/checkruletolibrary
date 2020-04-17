@@ -1,5 +1,7 @@
 package vn.tcx.dw.validator;
 
+import java.util.Objects;
+
 import org.apache.commons.lang3.StringUtils;
 
 import vn.tcx.dw.component.Result;
@@ -19,7 +21,12 @@ public class CheckNotContainCharacterValidator implements Validator {
         return StringUtils.isNumeric(value);
     }
 
+    @Override
     public Result validate(Object value) {
+
+        if (Objects.isNull(value)) {
+            return Result.OK;
+        }
 
         return isNumber(value.toString()) ? Result.OK : Result.FAILED;
     }

@@ -1,7 +1,9 @@
 package vn.tcx.dw.validator;
 
+import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import lombok.Setter;
 import vn.tcx.dw.component.Result;
@@ -35,9 +37,13 @@ public class CheckTimeFormatValidator implements Validator {
 
     @Override
     public Result validate(Object value) {
+        
+        if (Objects.isNull(value)) {
+            return Result.OK;
+        }
 
         boolean kq = false;
-        if (value instanceof LocalTime) {
+        if (value instanceof Time) {
             kq = true;
         }
         kq = isFormatTime((String) value);
