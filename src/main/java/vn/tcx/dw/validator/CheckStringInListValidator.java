@@ -31,6 +31,9 @@ public class CheckStringInListValidator implements Validator {
             return Result.OK;
         }
 
+        if (value instanceof Boolean) {
+            value = (value == Boolean.TRUE) ? "1" : "0";
+        }
         return isStringInList(value.toString()) ? Result.OK : Result.FAILED;
     }
 

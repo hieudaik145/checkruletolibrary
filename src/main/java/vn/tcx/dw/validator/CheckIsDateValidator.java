@@ -20,34 +20,21 @@ import vn.tcx.dw.component.Validator;
 @Setter
 public class CheckIsDateValidator implements Validator {
 
-    private String pattern;
-
-    private boolean isDate(String value) {
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(pattern);
-
-        LocalDate localDate = LocalDate.parse(value, dtf);
-
-        if (localDate == null) {
-            return false;
-        }
-
-        return true;
-
-    }
 
     @Override
     public Result validate(Object value) {
-        
+
         if (Objects.isNull(value)) {
             return Result.OK;
         }
 
         if (value instanceof Timestamp || value instanceof Date) {
             return Result.OK;
+        } else {
+            return Result.FAILED;
         }
+        
 
-        return isDate(value.toString()) ? Result.OK : Result.FAILED;
     }
 
 }

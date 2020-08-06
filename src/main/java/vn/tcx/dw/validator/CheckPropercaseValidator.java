@@ -18,14 +18,18 @@ public class CheckPropercaseValidator implements Validator {
 
     private boolean isProperCase(String value) {
 
-        String[] words = StringUtils.split(value,StringUtils.SPACE);
+        String[] words = StringUtils.split(value, StringUtils.SPACE);
 
         for (String word : words) {
-            if (!StringUtils.isAllLowerCase(StringUtils.substring(word, 0, 1))) {
+            final char temp = word.charAt(0);
+            if (Character.isLetter(temp) && !Character.isUpperCase(temp)) {
+                return false;
+            }
+
+            if (word.length() > 1 && !StringUtils.isAllLowerCase(StringUtils.substring(word, 1, word.length()))) {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -35,8 +39,9 @@ public class CheckPropercaseValidator implements Validator {
         if (Objects.isNull(value)) {
             return Result.OK;
         }
-        
+
         return isProperCase(value.toString()) ? Result.OK : Result.FAILED;
     }
+    
 
 }

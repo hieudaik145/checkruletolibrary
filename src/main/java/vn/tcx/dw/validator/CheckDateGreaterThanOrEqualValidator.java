@@ -24,12 +24,13 @@ public class CheckDateGreaterThanOrEqualValidator implements Validator {
 
     private boolean isGreaterThanOrEqualTo(LocalDateTime value) {
 
-        return value.isAfter(dateTime) || value.isEqual(dateTime);
+        System.out.println("VALUE " + value + "COMPARE " + dateTime);
+        return value.compareTo(dateTime) >= 0;
     }
 
     private boolean isGreaterThanOrEqualLocalDate(LocalDate value) {
 
-        return value.isAfter(dateTime.toLocalDate()) || value.isEqual(dateTime.toLocalDate());
+        return value.compareTo(dateTime.toLocalDate()) >= 0;
     }
 
     @Override
@@ -44,11 +45,13 @@ public class CheckDateGreaterThanOrEqualValidator implements Validator {
             Date temp = (Date) value;
             kq = isGreaterThanOrEqualLocalDate(temp.toLocalDate());
         } else if (value instanceof Timestamp) {
-
             Timestamp temp = (Timestamp) value;
             kq = isGreaterThanOrEqualTo(temp.toLocalDateTime());
+        } else {
+            System.out.println("KHONG THUOC TYPE DATE");
         }
 
         return kq ? Result.OK : Result.FAILED;
     }
+
 }

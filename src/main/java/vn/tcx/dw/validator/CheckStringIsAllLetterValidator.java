@@ -16,8 +16,8 @@ import vn.tcx.dw.component.Validator;
  */
 public class CheckStringIsAllLetterValidator implements Validator {
 
-    private boolean isAllLetterValidate(String value) {
-        return StringUtils.isAlpha(value);
+    private static boolean isAllLetterValidate(String value) {
+        return StringUtils.isAlphaSpace(value);
     }
 
     @Override
@@ -29,4 +29,5 @@ public class CheckStringIsAllLetterValidator implements Validator {
 
         return isAllLetterValidate(value.toString()) ? Result.OK : Result.FAILED;
     }
+    
 }

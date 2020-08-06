@@ -12,10 +12,10 @@ import vn.tcx.dw.component.Validator;
  * @since 1.0
  * @created 03/08/2020 18:01:30
  */
-public class CheckCmndHave9Or12Character implements Validator {
+public class CheckCmnd9Or12CharacterValidator implements Validator {
 
     /**
-     * Perform checj Cmnd have 9 or 12 character
+     * Perform check Cmnd have 9 or 12 character
      * 
      * @update hieuvv
      * @lastModifier 03/08/2020 18:00:29
