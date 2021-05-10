@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import vn.tcx.dw.component.Result;
 import vn.tcx.dw.component.Validator;
+import vn.tcx.dw.utils.ConvertString;
 
 /**
  * Check String is all letter
@@ -17,9 +18,10 @@ import vn.tcx.dw.component.Validator;
 public class CheckStringIsAllLetterValidator implements Validator {
 
     private static boolean isAllLetterValidate(String value) {
-        return StringUtils.isAlphaSpace(value);
+        
+        return StringUtils.isAlphaSpace(ConvertString.generateStringSearch(value));
     }
-
+    
     @Override
     public Result validate(Object value) {
 

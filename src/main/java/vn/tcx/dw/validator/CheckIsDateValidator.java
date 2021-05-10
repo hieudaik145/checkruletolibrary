@@ -2,8 +2,6 @@ package vn.tcx.dw.validator;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import lombok.Setter;

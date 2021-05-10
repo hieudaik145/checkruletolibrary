@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import vn.tcx.dw.component.Result;
 import vn.tcx.dw.component.Validator;
+import vn.tcx.dw.utils.ConvertString;
 
 /**
  * Define check not contain special character
@@ -18,7 +19,7 @@ public class CheckNotContainSpecialCharacterValidator implements Validator {
 
     private boolean isNotContainSpecialCharacter(String value) {
 
-        return StringUtils.isAlphanumericSpace(value);
+        return StringUtils.isAlphanumericSpace(ConvertString.generateStringSearch(value));
     }
 
     @Override
@@ -30,5 +31,5 @@ public class CheckNotContainSpecialCharacterValidator implements Validator {
 
         return isNotContainSpecialCharacter(value.toString()) ? Result.OK : Result.FAILED;
     }
-
+    
 }
