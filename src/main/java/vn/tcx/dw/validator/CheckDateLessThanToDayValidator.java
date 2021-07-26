@@ -38,7 +38,7 @@ public class CheckDateLessThanToDayValidator implements Validator {
         if (Objects.isNull(value)) {
             return Result.OK;
         }
-
+        
         if (value instanceof Date) {
             Date date = (Date) value;
             kq = isLessThanLocalDate(date.toLocalDate());

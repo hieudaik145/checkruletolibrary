@@ -23,8 +23,6 @@ public class CheckDateGreaterThanOrEqualValidator implements Validator {
     private LocalDateTime dateTime;
 
     private boolean isGreaterThanOrEqualTo(LocalDateTime value) {
-
-        System.out.println("VALUE " + value + "COMPARE " + dateTime);
         return value.compareTo(dateTime) >= 0;
     }
 
